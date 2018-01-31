@@ -17,4 +17,20 @@ describe('fib tests', () => {
     it('should return 357 for 14', () => {
         assert.strictEqual(getFib(14), 377);
     });
+
+    it('should throw type error for boolean', () => {
+        assert.throws(() => getFib(true), 'TypeError');
+    });
+
+    it('should work for string that is a number', () => {
+        assert.strictEqual(getFib('14'), 377);
+    });
+
+    it('should throw type error for string', () => {
+        assert.throws(() => getFib('hello world'), 'TypeError');
+    });
+
+    it('should throw a type error if a function', () => {
+        assert.throws(() => getFib(() => {return `can't take the sky from me`}), 'TypeError');
+    });
 });
