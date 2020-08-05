@@ -1,46 +1,45 @@
 const getFib = require('./fib');
-const assert = require('chai').assert;
 
 describe('fib tests', () => {
-    it('should return 0 for 0', () => {
-        assert.strictEqual(getFib(0), 0);
-        assert.strictEqual(getFib(-0), 0);
+    test('should return 0 for 0', () => {
+        expect(getFib(0)).toBe(0);
+        expect(getFib(-0)).toBe(0);
     });
 
-    it('should return 1 for 1', () => {
-        assert.strictEqual(getFib(1), 1);
+    test('should return 1 for 1', () => {
+        expect(getFib(1)).toBe(1);
     });
 
-    it('should return 89 for 11', () => {
-        assert.strictEqual(getFib(11), 89);
+    test('should return 89 for 11', () => {
+        expect(getFib(11)).toBe(89);
     });
 
-    it('should return 357 for 14', () => {
-        assert.strictEqual(getFib(14), 377);
+    test('should return 357 for 14', () => {
+        expect(getFib(14)).toBe(377);
     });
 
-    it('should throw type error for negative numbers', () => {
-        assert.throws(() => getFib(-1), 'TypeError');
-        assert.throws(() => getFib(-42), 'TypeError');
-        assert.throws(() => getFib(-102), 'TypeError');
-        assert.throws(() => getFib(-Infinity), 'TypeError');
+    test('should throw type error for negative numbers', () => {
+        expect(() => getFib(-1)).toThrow('TypeError');
+        expect(() => getFib(-42)).toThrow('TypeError');
+        expect(() => getFib(-102)).toThrow('TypeError');
+        expect(() => getFib(-Infinity)).toThrow('TypeError');
     });
 
-    it('should throw type error for boolean', () => {
-        assert.throws(() => getFib(true), 'TypeError');
+    test('should throw type error for boolean', () => {
+        expect(() => getFib(true)).toThrow('TypeError');
     });
 
-    it('should work for string that is a number', () => {
-        assert.strictEqual(getFib('14'), 377);
-        assert.strictEqual(getFib('0x05'), 5);
-        assert.strictEqual(getFib('0x06'), 8);
+    test('should work for string that is a number', () => {
+        expect(getFib('14')).toBe(377);
+        expect(getFib('0x05')).toBe(5);
+        expect(getFib('0x06')).toBe(8);
     });
 
-    it('should throw type error for string', () => {
-        assert.throws(() => getFib('hello world'), 'TypeError');
+    test('should throw type error for string', () => {
+        expect(() => getFib('hello world')).toThrow('TypeError');
     });
 
-    it('should throw a type error if a function', () => {
-        assert.throws(() => getFib(() => {return `can't take the sky from me`}), 'TypeError');
+    test('should throw a type error if a function', () => {
+        expect(() => getFib(() => `can't take the sky from me`)).toThrow('TypeError');
     });
 });
